@@ -24,6 +24,7 @@
             color: white;
             font-family: 'Poppins', sans-serif;
             padding: 2rem;
+            line-height: 1.6;
         }
         
         .container {
@@ -58,10 +59,11 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             margin-bottom: 2rem;
             width: 100%;
-            max-width: 1320px;
+            max-width: 1280px; /* Match canvas width */
             margin-left: auto;
             margin-right: auto;
             overflow: hidden;
+            position: relative; /* Needed for absolute positioning of loading */
         }
         
         canvas {
@@ -72,6 +74,46 @@
             max-width: 1280px;
             display: block;
             margin: 0 auto;
+        }
+
+        #loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #66fcf1;
+            font-size: 1.8rem;
+            z-index: 10;
+            border-radius: 12px;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #loading.hidden {
+            opacity: 0;
+            pointer-events: none; /* Allows interaction with canvas when hidden */
+        }
+
+        .controls {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .control-group label {
+            margin-left: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .control-group input[type="checkbox"] {
+            transform: scale(1.2);
+            cursor: pointer;
         }
 
         .instructions {
@@ -110,6 +152,7 @@
             border-radius: 12px;
             min-width: 250px;
             transition: transform 0.3s ease;
+            flex: 1 1 250px; /* Allow features to grow and shrink */
         }
 
         .feature:hover {
@@ -127,12 +170,11 @@
         }
 
         @media (max-width: 1400px) {
-            .canvas-container {
+            .container {
                 padding: 1rem;
             }
-            
-            canvas {
-                max-width: 100%;
+            .canvas-container {
+                padding: 1rem;
             }
         }
 
@@ -145,9 +187,18 @@
                 padding: 1rem;
             }
             
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .key-features {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .feature {
+                width: 80%;
             }
 
             .canvas-container {
@@ -164,6 +215,22 @@
         
         <div class="canvas-container">
             <!-- Canvas will be inserted here by p5.js -->
+            <div id="loading">Loading Video and AI Model...</div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <input type="checkbox" id="toggleSkeleton" checked>
+                <label for="toggleSkeleton">Show Skeleton</label>
+            </div>
+            <div class="control-group">
+                <input type="checkbox" id="toggleKeypoints" checked>
+                <label for="toggleKeypoints">Show Keypoints</label>
+            </div>
+            <div class="control-group">
+                <input type="checkbox" id="toggleOverlays">
+                <label for="toggleOverlays">Show Overlays</label>
+            </div>
         </div>
 
         <div class="instructions">
