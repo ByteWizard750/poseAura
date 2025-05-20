@@ -11,9 +11,7 @@ PoseAura is an interactive web application that uses p5.js and ml5.js to perform
     -   **Live Server VS Code Extension:** If you use Visual Studio Code, the "Live Server" extension is a convenient way to host local files.
 
 3.  **Add Images (Optional):** If you want to use the image overlays (spectacles and cigar), create an `images` directory in the project root and add the following files:
-    -   `shahrukh.png`
-    -   `spects.png`
-    -   `cigar.png`
+   
 
     You can use your own images, but make sure they are named correctly.
 
@@ -32,6 +30,6 @@ PoseAura is an interactive web application that uses p5.js and ml5.js to perform
 ## Troubleshooting
 
 -   **Camera not showing:** Ensure your browser has permission to access the camera. Check the browser's developer console (F12) for any errors.
--   **Images not appearing:** Make sure the `images` directory exists in the project root and the image files (`spects.png`, `cigar.png`, `shahrukh.png`) are correctly named within that directory.
+-   **Images not appearing:** Make sure the `images` directory exists in the project root and the image files are correctly named within that directory.
 
 Feel free to modify the `sketch.js` file to experiment with different pose tracking visualizations or overlays! 
