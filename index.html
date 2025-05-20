@@ -3,34 +3,189 @@
 
 <head>
     <title>PoseAura</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-    <script src='sketch.js'></script>
+    <script src="sketch.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            padding: 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            padding: 2rem;
         }
         
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+        }
+
         h1 {
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #66fcf1, #45a29e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #66fcf1;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .canvas-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 1320px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
         }
         
         canvas {
-            border: 2px solid #333;
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: auto;
+            max-width: 1280px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instructions h2 {
+            color: #66fcf1;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .instructions p {
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .key-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            min-width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature h3 {
+            color: #66fcf1;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1400px) {
+            .canvas-container {
+                padding: 1rem;
+            }
+            
+            canvas {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .key-features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .canvas-container {
+                padding: 0.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>PoseAura</h1>
+    <div class="container">
+        <h1>PoseAura</h1>
+        <p class="subtitle">Real-time Pose Detection with AI</p>
+        
+        <div class="canvas-container">
+            <!-- Canvas will be inserted here by p5.js -->
+        </div>
+
+        <div class="instructions">
+            <h2>How to Use</h2>
+            <p>Stand in front of your camera and move around. The AI will detect your pose and track your movements in real-time. Make sure you have good lighting and enough space to move.</p>
+        </div>
+
+        <div class="key-features">
+            <div class="feature">
+                <h3>Real-time Tracking</h3>
+                <p>Advanced pose detection with instant response and high accuracy</p>
+            </div>
+            <div class="feature">
+                <h3>AI Powered</h3>
+                <p>Powered by ML5.js and PoseNet for precise body tracking</p>
+            </div>
+            <div class="feature">
+                <h3>Interactive</h3>
+                <p>See your movements visualized in real-time with detailed keypoints</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 
